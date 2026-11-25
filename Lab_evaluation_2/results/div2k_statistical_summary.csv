@@ -1,0 +1,6 @@
+metric,mean_ms,std_dev_ms,cv_percent,speedup_vs_cpu,speedup_shared_vs_global
+CPU_Time,5853.402,28.970,0.495,1.000,N/A
+Global_Kernel,736.955,3.250,0.441,7.942,1.000
+Shared_Kernel,50.636,0.812,1.604,115.597,14.554
+Global_Wall_Time,5521.073,85.761,1.553,1.060,1.000
+Shared_Wall_Time,4798.740,43.419,0.905,1.220,1.151

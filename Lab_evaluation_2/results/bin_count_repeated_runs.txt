@@ -1,0 +1,35 @@
+================================================================================
+HISTOGRAM BIN-COUNT EXPERIMENTAL SUMMARY (THREE-RUN CONSOLIDATED MEANS)
+Input Elements: 16,777,216 (2^24 UINT8 elements)
+Hardware: NVIDIA GeForce RTX 5060 Ti | CUDA 13.5 | 4096 Blocks | 256 Threads/Block
+GPU Timing Repetitions per Execution: 10
+Bin Mapping: bin = (int(value) * BINS) / 256
+================================================================================
+
+1. UNIFORM DISTRIBUTION
+   - 16 Bins  : Global Mean = 1.8588 ms | Shared Mean = 0.0291 ms | Ratio = 63.80× | Status: PASSED
+   - 64 Bins  : Global Mean = 2.7673 ms | Shared Mean = 0.0311 ms | Ratio = 88.98× | Status: PASSED
+   - 256 Bins : Global Mean = 2.4463 ms | Shared Mean = 0.0481 ms | Ratio = 50.82× | Status: PASSED
+
+2. GAUSSIAN DISTRIBUTION (μ = 128, σ = 30)
+   - 16 Bins  : Global Mean = 3.1218 ms | Shared Mean = 0.0276 ms | Ratio = 113.25× | Status: PASSED
+   - 64 Bins  : Global Mean = 2.3485 ms | Shared Mean = 0.0302 ms | Ratio = 77.85× | Status: PASSED
+   - 256 Bins : Global Mean = 1.8364 ms | Shared Mean = 0.0466 ms | Ratio = 39.41× | Status: PASSED
+
+3. HIGHLY SKEWED DISTRIBUTION (90% Mode at 128, 10% Uniform)
+   - 16 Bins  : Global Mean = 6.2244 ms | Shared Mean = 0.0275 ms | Ratio = 226.62× | Status: PASSED
+   - 64 Bins  : Global Mean = 6.5892 ms | Shared Mean = 0.0311 ms | Ratio = 211.87× | Status: PASSED
+   - 256 Bins : Global Mean = 6.8695 ms | Shared Mean = 0.0460 ms | Ratio = 149.34× | Status: PASSED
+
+================================================================================
+GLOBAL MERGE OVERHEAD ANALYSIS ACROSS 4096 BLOCKS:
+   - 16 Bins  : 4096 × 16  = 65,536 global atomic updates during block merge
+   - 64 Bins  : 4096 × 64  = 262,144 global atomic updates during block merge
+   - 256 Bins : 4096 × 256 = 1,048,576 global atomic updates during block merge
+
+FINDINGS:
+   Shared-memory privatized histogram execution time increases with bin count
+   (from ~0.027ms to ~0.048ms) due to increased partial histogram initialization
+   and block-merge atomic reduction overhead into the global buffer.
+   Global atomics experience severe degradation under skewed inputs (~6.87ms).
+================================================================================

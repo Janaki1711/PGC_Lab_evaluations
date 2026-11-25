@@ -1,8 +1,33 @@
 # Compiled Binaries & Executables
 *.o
+*.obj
 *.out
 *.exe
+*.dll
+*.lib
+*.pdb
+*.ilk
+*.exp
 parallel_sum
+
+# Build Directories
+build/
+cmake-build-*/
+.vs/
+
+# Python Cache & Virtual Environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# Large Datasets & Raw Binary Dumps
+dataset/DIV2K/
+dataset/*.bin
+*.bin
+*.zip
+*.tar.gz
 
 # System & Editor Files
 .DS_Store

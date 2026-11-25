@@ -1,0 +1,30 @@
+# Build and intermediate artifacts
+build/
+cmake-build-*/
+*.exe
+*.obj
+*.o
+*.lib
+*.exp
+*.pdb
+*.ilk
+*.dll
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# Large Datasets & Binary Dumps (Exclude 6.23 GiB binary and raw images)
+dataset/DIV2K/
+dataset/*.bin
+dataset/div2k_rgb_u8.bin
+*.bin
+*.zip
+*.tar.gz
+
+# Temporary artifacts
+temp/
+*.tmp

@@ -1,0 +1,45 @@
+================================================================================
+DIV2K DATASET BENCHMARK: THREE REPEATED EXECUTIONS LOG
+Dataset: DIV2K High-Resolution Training Set (800 Images, 6,691,265,280 RGB Values)
+Hardware: NVIDIA GeForce RTX 5060 Ti (16 GB, sm_120) | Intel Core i5-13400 (32 GB RAM)
+CUDA: 13.5 | Windows 11 Build 26200 | Chunk Size: 64 MiB
+================================================================================
+
+RUN 1:
+  CPU Reference Time       : 5868.113 ms
+  Global Atomic Kernel     : 736.054 ms
+  Shared Privatized Kernel : 50.255 ms
+  Global Wall Time         : 5522.351 ms
+  Shared Wall Time         : 4848.474 ms
+  Kernel Verification      : PASSED (All 6,691,265,280 values matched exactly)
+
+RUN 2:
+  CPU Reference Time       : 5820.028 ms
+  Global Atomic Kernel     : 734.250 ms
+  Shared Privatized Kernel : 50.085 ms
+  Global Wall Time         : 5434.680 ms
+  Shared Wall Time         : 4768.383 ms
+  Kernel Verification      : PASSED (All 6,691,265,280 values matched exactly)
+
+RUN 3:
+  CPU Reference Time       : 5872.064 ms
+  Global Atomic Kernel     : 740.560 ms
+  Shared Privatized Kernel : 51.569 ms
+  Global Wall Time         : 5606.187 ms
+  Shared Wall Time         : 4779.363 ms
+  Kernel Verification      : PASSED (All 6,691,265,280 values matched exactly)
+
+================================================================================
+STATISTICAL CONSOLIDATION (3 RUNS)
+================================================================================
+Metric                Mean (ms)     Std Dev (ms)    CV (%)     Speedup vs CPU
+--------------------------------------------------------------------------------
+CPU Reference         5853.402      28.970          0.495%     1.00×
+Global Atomic Kernel   736.955       3.250          0.441%     7.94×
+Shared Kernel           50.636       0.812          1.604%   115.60×
+Global Wall Time      5521.073      85.761          1.553%     1.06×
+Shared Wall Time      4798.740      43.419          0.905%     1.22×
+
+Speedup (Shared vs Global Kernel) : 14.55×
+All repeated executions verified with 100% exact numerical match.
+================================================================================

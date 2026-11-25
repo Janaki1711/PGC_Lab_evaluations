@@ -1,0 +1,4 @@
+run_id,cpu_time_ms,global_kernel_ms,shared_kernel_ms,global_wall_ms,shared_wall_ms,correctness
+1,5868.113,736.054,50.255,5522.351,4848.474,PASSED
+2,5820.028,734.250,50.085,5434.680,4768.383,PASSED
+3,5872.064,740.560,51.569,5606.187,4779.363,PASSED

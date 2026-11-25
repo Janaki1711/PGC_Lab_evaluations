@@ -71,7 +71,7 @@ All benchmarks were executed on physical hardware:
 
 ---
 
-## 3. Project Architecture & Implementations
+## 3. Repository Architecture
 
 ```text
 Lab_evaluation_2/
@@ -295,14 +295,45 @@ python scripts/generate_analysis.py
 
 ## 8. Empirical Execution Proof (Hardware Screenshots)
 
-The `images/` directory preserves the original command prompt logs executed on the NVIDIA GeForce RTX 5060 Ti:
+The terminal outputs below demonstrate actual execution on the bare-metal NVIDIA GeForce RTX 5060 Ti GPU (CUDA 13.5, Driver 610.88, Windows 11):
 
-- **GPU Hardware Verification:** [Screenshot 2026-11-25 064139.png](images/Screenshot%202026-11-25%20064139.png) (CUDA 13.5, Driver 610.88, RTX 5060 Ti 16 GB).
-- **1M Baseline Verification:** [Screenshot 2026-11-25 064210.png](images/Screenshot%202026-11-25%20064210.png) (CPU 0.836 ms, Global 0.156 ms, Shared 0.0126 ms, 66.19× Speedup).
-- **Synthetic Distribution Scaling:** [Screenshot 2026-11-25 064219.png](images/Screenshot%202026-11-25%20064219.png) & [Screenshot 2026-11-25 064233.png](images/Screenshot%202026-11-25%20064233.png).
-- **Bin-Count Sensitivity:** [Screenshot 2026-11-25 064248.png](images/Screenshot%202026-11-25%20064248.png) & [Screenshot 2026-11-25 064259.png](images/Screenshot%202026-11-25%20064259.png).
-- **DIV2K Dataset Analytics:** [Screenshot 2026-11-25 064338.png](images/Screenshot%202026-11-25%20064338.png) & [Screenshot 2026-11-25 064359.png](images/Screenshot%202026-11-25%20064359.png).
-- **AI Extensions (Quantization & CDF):** [Screenshot 2026-11-25 064411.png](images/Screenshot%202026-11-25%20064411.png) & [Screenshot 2026-11-25 064437.png](images/Screenshot%202026-11-25%20064437.png).
+### 8.1 System Hardware & CUDA Compilation Environment
+| NVIDIA GPU & CUDA Verification (`nvidia-smi`, `nvcc`) | CPU System Specifications & Baseline Executions |
+|:---:|:---:|
+| ![Hardware Environment](images/Screenshot%202026-11-25%20064139.png) | ![CPU Specs and Baseline](images/Screenshot%202026-11-25%20064155.png) |
+
+---
+
+### 8.2 Baseline 1M Elements & Synthetic Contention Scaling
+| 1M Float Baseline (Global vs Shared Memory) | UINT8 Uniform Distribution (16.78M Elements) |
+|:---:|:---:|
+| ![1M Baseline](images/Screenshot%202026-11-25%20064210.png) | ![Uniform Distribution](images/Screenshot%202026-11-25%20064219.png) |
+
+| UINT8 Gaussian & Highly Skewed Distributions | Bin-Count Scaling (Uniform 16 & 64 Bins) |
+|:---:|:---:|
+| ![Gaussian and Skewed](images/Screenshot%202026-11-25%20064233.png) | ![Bin Count 16 and 64](images/Screenshot%202026-11-25%20064248.png) |
+
+| Bin-Count Scaling (Uniform 256 & Gaussian 16, 64 Bins) | DIV2K Training Dataset File Structure |
+|:---:|:---:|
+| ![Bin Count 256 and Gaussian](images/Screenshot%202026-11-25%20064259.png) | ![DIV2K Dataset Files](images/Screenshot%202026-11-25%20064316.png) |
+
+---
+
+### 8.3 Large-Scale DIV2K Dataset Analytics (6.69 Billion Values)
+| DIV2K Combined RGB Intensity Analytics | DIV2K Dataset Validation (PASSED) |
+|:---:|:---:|
+| ![DIV2K Analytics](images/Screenshot%202026-11-25%20064338.png) | ![DIV2K Validation](images/Screenshot%202026-11-25%20064359.png) |
+
+---
+
+### 8.4 AI Application Extensions: Quantization & Parallel CDF
+| INT8 Quantization Calibration (Uniform & Gaussian) | Parallel CDF & Percentile Extraction (Uniform) |
+|:---:|:---:|
+| ![INT8 Quantization](images/Screenshot%202026-11-25%20064411.png) | ![Parallel CDF Uniform](images/Screenshot%202026-11-25%20064437.png) |
+
+| Parallel CDF & Percentiles (Gaussian & ReLU-like) | Parallel CDF & Percentiles (Skewed Exponential) |
+|:---:|:---:|
+| ![Parallel CDF Gaussian](images/Screenshot%202026-11-25%20064457.png) | ![Parallel CDF Skewed](images/Screenshot%202026-11-25%20064505.png) |
 
 ---
 
